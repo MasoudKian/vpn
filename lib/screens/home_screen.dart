@@ -13,6 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: cBgColor,
       appBar: AppBar(
@@ -30,16 +31,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+
+      ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Column(
           children: [
-            const SizedBox(
-              height: 170,
+            SizedBox(
+              height: size.height * 0.11,
             ),
             Center(
-              // Start Stop Button
+              // ------------------Start Stop Button-------------------- \\
               child: InkWell(
                 borderRadius: BorderRadius.circular(150),
                 onTap: () {
@@ -89,7 +92,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 50),
+            SizedBox(
+              height: size.height * 0.11,
+            ),
+            // ------------------Connect Button-------------------- \\
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10),
               width: double.infinity,
@@ -108,26 +114,89 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              margin: const EdgeInsets.only(bottom: 30),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
               ),
+              //--------------------- Select Server ------------------
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    isActive == true
-                        ? Icons.location_on_outlined
-                        : Icons.location_off_outlined,
-                    // color: isActive == true ? Colors.green : Colors.black,
-                  ),
-                  const Text(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
                     'Select Location',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, color: cSecClr),
+                  ),
+                  Icon(Icons.keyboard_arrow_down, color: cSecClr),
+                ],
+              ),
+            ),
+            const Spacer(),
+            // ------------------Internet Speed-------------------- \\
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: cPrimaryClr.withOpacity(0.2),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.arrow_downward,
+                      color: cPrimaryClr,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Download',
+                          style: TextStyle(fontSize: 16, color: cSecClr),
+                        ),
+                        Text(
+                          isActive == true ? '128kb' : '0.0kb',
+                          style:
+                              const TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Spacer(),
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: cPrimaryClr.withOpacity(0.2),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.upload,
+                      color: cPrimaryClr,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Upload',
+                          style: TextStyle(fontSize: 16, color: cSecClr),
+                        ),
+                        Text(
+                          isActive == true ? '128kb' : '0.0kb',
+                          style:
+                              const TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
